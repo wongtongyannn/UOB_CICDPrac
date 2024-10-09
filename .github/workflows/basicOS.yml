@@ -20,4 +20,14 @@ jobs:
     - name: Print content of repo
       run: |
         ls
+
+    #step 3: Set up Python
+    - name: Set up Python
+      uses: actions/setup.python@v5
+      with:
+        python-version: '3.10'
+    - name: Check version of Python
+      run: |
+        python --version
+
   
