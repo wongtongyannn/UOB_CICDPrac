@@ -1,0 +1,19 @@
+name: My Workflow File
+
+on:
+  push:
+    branches: 
+      -main
+
+jobs:
+  my-job:
+    name: My Job
+      runs-on: ubuntu-latest
+
+      steps: 
+      #step 1: Print a greeting message
+      - name: Print a greeting message
+      run:
+        echo "Hello there"
+      
+  
