@@ -1,9 +1,8 @@
-name: My Workflow File
+name: MyWorkflow
 
 on:
   push:
-    branches: 
-      -main
+    branches: [main]
 
 jobs:
   my-job:
