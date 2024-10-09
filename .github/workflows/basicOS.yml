@@ -8,12 +8,12 @@ on:
 jobs:
   my-job:
     name: My Job
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      steps: 
-      #step 1: Print a greeting message
-      - name: Print a greeting message
-      run:
+    steps: 
+    #step 1: Print a greeting message
+    - name: Print a greeting message
+      run: |
         echo "Hello there"
       
   
