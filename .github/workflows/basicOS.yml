@@ -44,6 +44,16 @@ jobs:
       run: |
         pytest
 
+    #Access the hidden repo
+    - name: Check out hidden repo
+      uses: actions/checkout@v4
+      with:
+        repository: wongtongyannn/UOB_Hidden
+        token: ${{ secrets.SECRETUOB }}
 
+    #Prints out the hidden things
+    - name: Print out hidden things
+      run: |
+        ls
 
   
