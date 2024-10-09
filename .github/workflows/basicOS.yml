@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    #step 1: Print a greeting message
-    - name: Print a greeting message
-      run: |
-        echo "Hello there"
+      #step 1: Print a greeting message
+      - name: Print a greeting message
+        run: |
+          echo "Hello there"
       
   
