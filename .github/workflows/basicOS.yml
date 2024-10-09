@@ -14,5 +14,10 @@ jobs:
       - name: Print a greeting message
         run: |
           echo "Hello there"
-      
+      #step 2: Check out the source code from the repository
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Print content of repo
+        run: |
+          ls
   
