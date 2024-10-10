@@ -74,16 +74,16 @@ jobs:
         publish_dir: ./ #Publish the root directory (where index.html is located)
 
     # Discord Notification - Success
-    - name: Discord Notification - Success
-      if: ${{ success() }}
+    - if: ${{ success() }}
+      name: Discord Notification - Success
       uses: sebastianpopp/discord-action@releases/v2
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        message: ${{ github.repository }} is deployed and now live!
+        message: ${{ github.repository }} is deployed and now live! Please view it at the link provided: https://wongtongyannn.github.io/UOB_CICDPrac/
     
     # Discord Notification - Failure
-    - name: Discord Notification - Failure
-      if: ${{ failure() }}
+    - if: ${{ failure() }}
+      name: Discord Notification - Failure
       uses: sebastianpopp/discord-action@releases/v2
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
