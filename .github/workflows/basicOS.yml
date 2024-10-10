@@ -44,20 +44,20 @@ jobs:
       run: |
         pytest
 
-    #Access the hidden repo
-    - name: Check out hidden repo
-      uses: actions/checkout@v4
-      with:
-        repository: wongtongyannn/UOB_Hidden
-        path: hiddenfolder
-        token: ${{ secrets.SECRETUOB }}
+    # #Access the hidden repo
+    # - name: Check out hidden repo
+    #   uses: actions/checkout@v4
+    #   with:
+    #     repository: wongtongyannn/UOB_Hidden
+    #     path: hiddenfolder
+    #     token: ${{ secrets.SECRETUOB }}
 
-    #Prints out the hidden things
-    - name: Print out hidden things
-      run: |
-        ls
-        cd hiddenfolder
-        ls
+    # #Prints out the hidden things
+    # - name: Print out hidden things
+    #   run: |
+    #     ls
+    #     cd hiddenfolder
+    #     ls
 
     #Add in discord
     - name: discord 
