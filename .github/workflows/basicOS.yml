@@ -64,7 +64,7 @@ jobs:
       uses: sebastianpopp/discord-action@releases/v2
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        message: Hello, yan here! ${{ github.repository }} has been successfullly deployed.
+        message: ${{ github.repository }} pending deployment...
 
     #Deploy a simple webpage
     - name: Deploy to GitHub pages
@@ -73,4 +73,17 @@ jobs:
         github_token: ${{ secrets.SECRETUOB}}
         publish_dir: ./ #Publish the root directory (where index.html is located)
 
+    - if: ${{ success() }}
+      name: discord
+      uses: sebastianpopp/discord-action@releases/v2
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        message: ${{ github.repository }} is deployed and now live! Please go and view it at the link provided: https://wongtongyannn.github.io/UOB_CICDPrac/
+
+    - if: ${{ failure() }}
+      name: discord
+      uses: sebastianpopp/discord-action@releases/v2
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        message: ${{ github.repository }} deployment failed!
   
