@@ -6,9 +6,9 @@ on:
     branches: [main]
 
 jobs:
- builds:
-  #Create VM with ubuntu OS
-  runs-on: ubuntu-latest
+  build:
+    #Create VM with ubuntu OS
+    runs-on: ubuntu-latest
 
   steps: 
     #step 1: Print a greeting message
@@ -73,17 +73,18 @@ jobs:
         github_token: ${{ secrets.SECRETUOB}}
         publish_dir: ./ #Publish the root directory (where index.html is located)
 
-    - if: ${{ success() }}
-      name: discord
+    # Discord Notification - Success
+    - name: Discord Notification - Success
+      if: ${{ success() }}
       uses: sebastianpopp/discord-action@releases/v2
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
         message: ${{ github.repository }} is deployed and now live! Please view it at the link provided: https://wongtongyannn.github.io/UOB_CICDPrac/
-   
-    - if: ${{ failure() }}
-      name: discord
+    
+    # Discord Notification - Failure
+    - name: Discord Notification - Failure
+      if: ${{ failure() }}
       uses: sebastianpopp/discord-action@releases/v2
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
         message: ${{ github.repository }} deployment failed!
-  
