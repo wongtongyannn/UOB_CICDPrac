@@ -6,24 +6,24 @@ on:
     branches: [main]
 
 jobs:
-  builds:
-    #Create VM with ubuntu OS
+  build:
+    # Create VM with ubuntu OS
     runs-on: ubuntu-latest
 
     steps: 
-      #step 1: Print a greeting message
+      # Step 1: Print a greeting message
       - name: Print a greeting message
         run: |
           echo "Hello there"
           
-      #step 2: Check out the source code from the repository
+      # Step 2: Check out the source code from the repository
       - name: Check out code
         uses: actions/checkout@v4
       - name: Print content of repo
         run: |
           ls
   
-      #step 3: Set up Python
+      # Step 3: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -32,46 +32,31 @@ jobs:
         run: |
           python --version
   
-      #step 4: Install dependencies (if you have a requirements.txt file)
+      # Step 4: Install dependencies (if you have a requirements.txt file)
       - name: Install dependencies 
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest
   
-      #begin test
+      # Begin test
       - name: Testing with Pytest
         run: |
           pytest
   
-      # #Access the hidden repo
-      # - name: Check out hidden repo
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: wongtongyannn/UOB_Hidden
-      #     path: hiddenfolder
-      #     token: ${{ secrets.SECRETUOB }}
-  
-      # #Prints out the hidden things
-      # - name: Print out hidden things
-      #   run: |
-      #     ls
-      #     cd hiddenfolder
-      #     ls
-  
-      #Add in discord
-      - name: discord 
+      # Discord Notification - Pre-Deployment
+      - name: Discord Pre-Deployment
         uses: sebastianpopp/discord-action@releases/v2
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: ${{ github.repository }} pending deployment...
+          message: "${{ github.repository }} pending deployment..."
   
-      #Deploy a simple webpage
-      - name: Deploy to GitHub pages
+      # Deploy a simple webpage
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with: 
-          github_token: ${{ secrets.SECRETUOB}}
-          publish_dir: ./ #Publish the root directory (where index.html is located)
+          github_token: ${{ secrets.SECRETUOB }}
+          publish_dir: ./ # Publish the root directory (where index.html is located)
   
       # Discord Notification - Success
       - name: Discord Notification - Success
@@ -79,7 +64,7 @@ jobs:
         uses: sebastianpopp/discord-action@releases/v2
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: ${{ github.repository }} is deployed and now live! Please view it at the link provided: https://wongtongyannn.github.io/UOB_CICDPrac/
+          message: "${{ github.repository }} is deployed and now live! Please view it at the link provided: https://wongtongyannn.github.io/UOB_CICDPrac/"
       
       # Discord Notification - Failure
       - name: Discord Notification - Failure
@@ -87,4 +72,4 @@ jobs:
         uses: sebastianpopp/discord-action@releases/v2
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: ${{ github.repository }} deployment failed!
+          message: "${{ github.repository }} deployment failed!"
