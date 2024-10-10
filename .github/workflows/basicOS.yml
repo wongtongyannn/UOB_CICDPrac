@@ -73,17 +73,17 @@ jobs:
           github_token: ${{ secrets.SECRETUOB}}
           publish_dir: ./ #Publish the root directory (where index.html is located)
   
-      # # Discord Notification - Success
-      - if: ${{ success() }}
-        name: Discord Notification - Success
+      # Discord Notification - Success
+      - name: Discord Notification - Success
+        if: ${{ success() }}
         uses: sebastianpopp/discord-action@releases/v2
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           message: ${{ github.repository }} is deployed and now live! Please view it at the link provided: https://wongtongyannn.github.io/UOB_CICDPrac/
       
-      # # Discord Notification - Failure
-      - if: ${{ failure() }}
-        name: Discord Notification - Failure
+      # Discord Notification - Failure
+      - name: Discord Notification - Failure
+        if: ${{ failure() }}
         uses: sebastianpopp/discord-action@releases/v2
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
